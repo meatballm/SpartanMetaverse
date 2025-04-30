@@ -38,13 +38,13 @@ public class PlayerMovement : MonoBehaviour
             graphic.x = 1f;
         }
         graphicsTransform.localScale = graphic;
-        if (rb.velocity != Vector2.zero)
-        {
-            animator.SetFloat("RunState", 0.55f);
-        }
-        else
-        {
-            animator.SetFloat("RunState", 0);
-        }
+        //if (rb.velocity != Vector2.zero)
+        //{
+        //    animator.SetFloat("RunState", 0.55f);
+        //}
+        //else
+        //{
+        //    animator.SetFloat("RunState", 0);
+        //}
     }
 }
