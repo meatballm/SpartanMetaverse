@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform graphicsTransform;
     [SerializeField] private float moveSpeed = 1f;
 
+    [SerializeField] private float acceleration = 15f;
+    [SerializeField] private float deceleration = 20f;
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -26,25 +28,32 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.velocity = input * moveSpeed;
+        //가속 관련 코드
+        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 targetVelocity = input * moveSpeed;
+        Vector2 velocityDiff = targetVelocity - rb.velocity;
+
+        float accelX = Mathf.Abs(targetVelocity.x) > 0.01f ? acceleration : deceleration;
+        float accelY = Mathf.Abs(targetVelocity.y) > 0.01f ? acceleration : deceleration;
+
+        Vector2 force = new Vector2(velocityDiff.x * accelX, velocityDiff.y * accelY);
+
+        rb.AddForce(force);
+
+        //애니메이터 코드
+        if (input != Vector2.zero) animator.SetBool("isRun", true);
+        else animator.SetBool("isRun", false);
+
+        //좌우반전 코드
         Vector2 graphic = graphicsTransform.localScale;
         if (rb.velocity.x > 0f)
         {
-            graphic.x = -1f;
+            graphic.x = 1f;
         }
         else if (rb.velocity.x < 0f)
         {
-            graphic.x = 1f;
+            graphic.x = -1f;
         }
         graphicsTransform.localScale = graphic;
-        //if (rb.velocity != Vector2.zero)
-        //{
-        //    animator.SetFloat("RunState", 0.55f);
-        //}
-        //else
-        //{
-        //    animator.SetFloat("RunState", 0);
-        //}
     }
 }
