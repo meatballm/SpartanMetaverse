@@ -36,6 +36,7 @@ public class ScoreManager : MonoBehaviour
             HighScore[currentGameIndex] = score;
             PlayerPrefs.SetInt("HighScore"+currentGameIndex, HighScore[currentGameIndex]);
             PlayerPrefs.Save();
+            Debug.Log("최고기록 갱신! : "+score);
         }
     }
 }

@@ -15,6 +15,9 @@ public class FlappyPlayer : MonoBehaviour
 
     public bool godMode = false;
 
+    GameManager gameManager = null;
+    IngameManager ingameManager = null;
+
     void Start()
     {
         animator = transform.GetComponentInChildren<Animator>();
@@ -29,6 +32,8 @@ public class FlappyPlayer : MonoBehaviour
         {
             Debug.LogError("Not Founded Rigidbody");
         }
+        gameManager = GameManager.Instance;
+        ingameManager = IngameManager.Instance;
     }
 
     void Update()
@@ -39,7 +44,11 @@ public class FlappyPlayer : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    // 게임 재시작
+                    gameManager.RestartGame();
+                }
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    gameManager.GoMainScene();
                 }
             }
             else
@@ -88,5 +97,6 @@ public class FlappyPlayer : MonoBehaviour
         Debug.Log("으앙주금");
         isDead = true;
         deathCooldown = 1f;
+        ingameManager.GameOver();
     }
 }
