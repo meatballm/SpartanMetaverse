@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-
+        this.transform.position = GameManager.Instance.playerlocation;
         if (animator == null)
             Debug.LogError("Animator not found!");
         if (rb == null)

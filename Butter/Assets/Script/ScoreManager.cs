@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 
     public int[] HighScore { get; private set; }
     int GameCount=3;
-    int currentGameIndex;
+    public int currentGameIndex;
 
     void Awake()
     {
@@ -38,5 +38,9 @@ public class ScoreManager : MonoBehaviour
             PlayerPrefs.Save();
             Debug.Log("최고기록 갱신! : "+score);
         }
+    }
+    public string ShowHighScore(int idx)
+    {
+        return HighScore[idx].ToString();
     }
 }

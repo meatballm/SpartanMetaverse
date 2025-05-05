@@ -2354,6 +2354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cf0683dc14b6f499cd4bc0af110ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentGameIndex: 0
 --- !u!4 &613282051
 Transform:
   m_ObjectHideFlags: 0
@@ -2381,6 +2382,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b2513482600254ea4ec6e00c142e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerlocation: {x: 0, y: 0}
+  gameName:
+  - Flappy
+  - Jump
+  - Stack
+  - Survive
 --- !u!1 &646601151
 GameObject:
   m_ObjectHideFlags: 0

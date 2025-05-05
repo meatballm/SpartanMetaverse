@@ -22,30 +22,56 @@ public class UIManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void ShowDialogue(Sprite portrait, string npcName, string dialogue, string[] options, UnityAction[] callbacks)
+    public void ShowDialogue(
+        Sprite portrait,
+        string npcName,
+        string dialogue,
+        string[] options,
+        UnityAction[] callbacks,
+        bool[] closeOnSelect = null)
     {
         dialoguePanel.SetActive(true);
-
         portraitImage.sprite = portrait;
         nameText.text = npcName;
         dialogueText.text = dialogue;
+
+        // default: 모두 닫히도록
+        if (closeOnSelect == null || closeOnSelect.Length != options.Length)
+        {
+            closeOnSelect = new bool[options.Length];
+            for (int k = 0; k < options.Length; k++)
+                closeOnSelect[k] = true;
+        }
 
         for (int i = 0; i < optionButtons.Length; i++)
         {
             if (i < options.Length)
             {
-                optionButtons[i].gameObject.SetActive(true);
-                optionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = options[i];
+                var btn = optionButtons[i];
+                btn.gameObject.SetActive(true);
+                btn.GetComponentInChildren<TextMeshProUGUI>().text = options[i];
+                btn.onClick.RemoveAllListeners();
 
-                optionButtons[i].onClick.RemoveAllListeners();
-                optionButtons[i].onClick.AddListener(callbacks[i]);
-                optionButtons[i].onClick.AddListener(HideDialogue);
+                // 1) 원래 콜백
+                btn.onClick.AddListener(callbacks[i]);
+                // 2) closeOnSelect[i]가 true일 때만 대화창 닫기
+                if (closeOnSelect[i])
+                    btn.onClick.AddListener(HideDialogue);
             }
-            else { optionButtons[i].gameObject.SetActive(false); }
+            else
+            {
+                optionButtons[i].gameObject.SetActive(false);
+            }
         }
     }
+
     public void HideDialogue()
     {
         dialoguePanel.SetActive(false);
+    }
+
+    public void UpdateDialogueText(string newText)
+    {
+        dialogueText.text = newText;
     }
 }

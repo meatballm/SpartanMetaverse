@@ -76,16 +76,23 @@ public class NPCInteraction : MonoBehaviour
         string[] options = { Btn1, Btn2, Btn3 };
         UnityAction[] callbacks = {
             () => GameManager.Instance.GoGameScene(GameId),
-            () => Debug.Log("오레사마다!"),
-            () => Debug.Log("대화 종료")
+            () => UIManager.instance.UpdateDialogueText(
+                GameManager.Instance.gameName[GameId]
+                + "의 최고기록은 "
+                + ScoreManager.Instance.ShowHighScore(GameId)
+                + "점 입니다."
+        ),() => Debug.Log("대화 종료")
         };
+
+        bool[] closeOnSelect = { true, false, true };
 
         UIManager.instance.ShowDialogue(
             npcPortrait,
             npcName,
             npcDialogue,
             options,
-            callbacks
+            callbacks,
+            closeOnSelect
         );
     }
 
