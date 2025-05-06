@@ -80,7 +80,7 @@ public class NPCInteraction : MonoBehaviour
                 GameManager.Instance.gameName[GameId]
                 + "의 최고기록은 "
                 + ScoreManager.Instance.ShowHighScore(GameId)
-                + "점 입니다."
+                + " 입니다."
         ),() => Debug.Log("대화 종료")
         };
 
