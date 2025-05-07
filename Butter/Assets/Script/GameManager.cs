@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         playerlocation = player.transform.position;
+        AudioManager.Instance.StopBGM();
         SceneManager.LoadScene(gameName[i] + "Scene");
     }
     public void GoMainScene()
     {
+        AudioManager.Instance.StopBGM();
         SceneManager.LoadScene("MainScene");
     }
     public void RestartGame()

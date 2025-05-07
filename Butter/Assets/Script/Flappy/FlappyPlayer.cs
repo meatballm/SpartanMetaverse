@@ -20,6 +20,7 @@ public class FlappyPlayer : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlayBGM(2);
         animator = transform.GetComponentInChildren<Animator>();
         _rigidbody = transform.GetComponent<Rigidbody2D>();
 
@@ -62,6 +63,7 @@ public class FlappyPlayer : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 isFlap = true;
+                AudioManager.Instance.PlaySFX(2);
             }
         }
     }
@@ -93,7 +95,8 @@ public class FlappyPlayer : MonoBehaviour
 
         if (isDead)
             return;
-
+        AudioManager.Instance.StopBGM();
+        AudioManager.Instance.PlaySFX(6);
         animator.SetBool("isDead", true);
         Debug.Log("ю╦╬саж╠щ");
         isDead = true;

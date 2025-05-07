@@ -21,6 +21,7 @@ public class NPCInteraction : MonoBehaviour
     public string Btn3 = "다음에";
     [TextArea(3, 10)]
     public string Tutorial = "";
+    public GameObject F;
 
     void Awake()
     {
@@ -59,13 +60,15 @@ public class NPCInteraction : MonoBehaviour
     void OnEnterRange()
     {
         Debug.Log("NPC: 플레이어가 범위 안에 들어왔습니다!");
-        // ex) UI 표시
+        F.SetActive(true);
+        AudioManager.Instance.PlaySFX(0);
     }
 
     void OnExitRange()
     {
         Debug.Log("NPC: 플레이어가 범위 밖으로 나갔습니다!");
         UIManager.instance.HideDialogue();
+        F.SetActive(false);
     }
 
     void Interact()

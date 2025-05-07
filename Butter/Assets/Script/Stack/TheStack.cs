@@ -49,6 +49,7 @@ public class TheStack : MonoBehaviour
         prevBlockPosition = Vector3.down;
         Spawn_Block();
         Spawn_Block();
+        AudioManager.Instance.PlayBGM(3);
     }
 
     void Update()
@@ -61,6 +62,7 @@ public class TheStack : MonoBehaviour
             if (PlaceBlock())
             {
                 Spawn_Block();
+                AudioManager.Instance.PlaySFX(5);
             }
             else
             {
@@ -70,6 +72,8 @@ public class TheStack : MonoBehaviour
                 isGameOver = true;
                 GameOverEffect();
                 StackUIManager.Instance.SetScoreUI();
+                AudioManager.Instance.StopBGM();
+                AudioManager.Instance.PlaySFX(6);
             }
         }
 
@@ -104,6 +108,7 @@ public class TheStack : MonoBehaviour
         prevColor = GetRandomColor();
         nextColor = GetRandomColor();
 
+        AudioManager.Instance.PlayBGM(3);
         Spawn_Block();
         Spawn_Block();
     }

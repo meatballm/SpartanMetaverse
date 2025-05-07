@@ -21,6 +21,7 @@ public class JumpPlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         sr.sprite = emptySprite;
+        AudioManager.Instance.PlayBGM(1);
     }
 
     void Update()
@@ -42,6 +43,7 @@ public class JumpPlayerController : MonoBehaviour
             // 점프 실행
             if (Input.GetButtonUp("Jump"))
             {
+                AudioManager.Instance.PlaySFX(4);
                 DoJump();
             }
         }
@@ -77,12 +79,14 @@ public class JumpPlayerController : MonoBehaviour
         if (other.CompareTag("Fin"))
         {
             JumpGameManager.Instance.TriggerGameOver();
+            AudioManager.Instance.PlaySFX(1);
         }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
         if (rb.velocity.x < 1f && rb.velocity.y < 1f)
             isGrounded = true;
+        AudioManager.Instance.PlaySFX(5);
     }
     void OnCollisionStay2D(Collision2D col)
     {

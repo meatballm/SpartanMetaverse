@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("Animator not found!");
         if (rb == null)
             Debug.LogError("Rigidbody2D not found!");
+        AudioManager.Instance.PlayBGM(0);
     }
 
     void FixedUpdate()
