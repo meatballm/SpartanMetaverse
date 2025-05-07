@@ -4704,6 +4704,10 @@ MonoBehaviour:
   maxJumpForce: 10
   minJumpForce: 3
   fixedAngle: 1.0471976
+  emptySprite: {fileID: 21300000, guid: e7af432c20bccc5448c08d708dc174d0, type: 3}
+  mid1Sprite: {fileID: 21300000, guid: 7ad04e1c8179d95419bca5d11ca1666e, type: 3}
+  mid2Sprite: {fileID: 21300000, guid: 712be3b60e4ec104b91ee6a3073ee289, type: 3}
+  fullSprite: {fileID: 21300000, guid: 3b452bc164f3e6a46b77b07540f0aac0, type: 3}
 --- !u!50 &2135750198
 Rigidbody2D:
   serializedVersion: 4

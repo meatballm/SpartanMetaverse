@@ -19,6 +19,8 @@ public class NPCInteraction : MonoBehaviour
     public string Btn1 = "게임시작";
     public string Btn2 = "최고기록";
     public string Btn3 = "다음에";
+    [TextArea(3, 10)]
+    public string Tutorial = "";
 
     void Awake()
     {
@@ -90,6 +92,7 @@ public class NPCInteraction : MonoBehaviour
             npcPortrait,
             npcName,
             npcDialogue,
+            Tutorial,
             options,
             callbacks,
             closeOnSelect

@@ -34,6 +34,7 @@ public class FlappyPlayer : MonoBehaviour
         }
         gameManager = GameManager.Instance;
         ingameManager = IngameManager.Instance;
+        ScoreManager.Instance.currentGameIndex = 0;
     }
 
     void Update()

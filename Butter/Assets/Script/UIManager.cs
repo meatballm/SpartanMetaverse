@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public Image portraitImage;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI tutorialText;
     public Button[] optionButtons;
 
     void Awake()
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
         Sprite portrait,
         string npcName,
         string dialogue,
+        string Tutorial,
         string[] options,
         UnityAction[] callbacks,
         bool[] closeOnSelect = null)
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour
         portraitImage.sprite = portrait;
         nameText.text = npcName;
         dialogueText.text = dialogue;
-
+        tutorialText.text = Tutorial;
         // default: 모두 닫히도록
         if (closeOnSelect == null || closeOnSelect.Length != options.Length)
         {

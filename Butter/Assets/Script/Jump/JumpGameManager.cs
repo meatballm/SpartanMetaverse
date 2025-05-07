@@ -14,6 +14,7 @@ public class JumpGameManager : MonoBehaviour
 
     void Awake()
     {
+        ScoreManager.Instance.currentGameIndex = 1;
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
@@ -36,15 +37,13 @@ public class JumpGameManager : MonoBehaviour
     {
         isGameOver = true;
         float elapsed = Time.time - startTime;
-        ScoreManager.Instance.TrySetNewScore((int)(elapsed));
+        float height = GetCurrentHeight();
+        ScoreManager.Instance.TrySetNewScore((int)(height));
         JumpUIManager.Instance.ShowGameOver(elapsed);
     }
 
     public void QuitGame()
     {
-        float py = FindObjectOfType<JumpPlayerController>().transform.position.y;
-        PlayerPrefs.SetFloat("LastQuitHeight", py - startY);
-        PlayerPrefs.Save();
         GameManager.Instance.GoMainScene();
     }
 
